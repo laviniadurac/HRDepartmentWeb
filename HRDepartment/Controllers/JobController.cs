@@ -15,9 +15,9 @@ namespace HRDepartment.Controllers
         {
             _jobRepository = new JobRepository(new HrContext());
         }
-        public JobController(IJobRepository employeeRepository)
+        public JobController(IJobRepository jobRepository)
         {
-            _jobRepository = employeeRepository;
+            _jobRepository = jobRepository;
         }
         [HttpGet]
         public ActionResult Index()
@@ -49,7 +49,7 @@ namespace HRDepartment.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditEmployee(Job model)
+        public ActionResult EditJob(Job model)
         {
             if (ModelState.IsValid)
             {
