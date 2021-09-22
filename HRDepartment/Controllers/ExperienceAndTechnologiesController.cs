@@ -10,7 +10,7 @@ namespace HRDepartment.Controllers
 {
     public class ExperienceAndTechnologiesController : Controller
     {
-        IExperienceAndTechnologiesRepository _experienceAndTechnologyRepository;
+        private readonly IExperienceAndTechnologiesRepository _experienceAndTechnologyRepository;
         public ExperienceAndTechnologiesController()
         {
             _experienceAndTechnologyRepository = new ExperienceAndTechnologiesRepository(new HrContext());

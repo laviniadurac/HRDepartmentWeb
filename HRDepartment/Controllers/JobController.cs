@@ -76,5 +76,10 @@ namespace HRDepartment.Controllers
             return RedirectToAction("Index", "Employee");
         }
 
+        public ViewResult ListOfJobs()
+        {
+            return View(_jobRepository.GetJobs());
+        }
+
     }
 }
