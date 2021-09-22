@@ -1,5 +1,6 @@
 ﻿using HRDepartment.DAL;
 using HRDepartment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,27 @@ namespace HRDepartment.Controllers
         {
             _futureEmployeeRepository = new FutureEmployeeRepository(new HrContext());
         }
-        public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository)
-        {
-            _futureEmployeeRepository = futureEmployeeRepository;
-        }
+
+        //public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository)
+        //{
+        //    _futureEmployeeRepository = futureEmployeeRepository;
+        //}
+
         [HttpGet]
         public ActionResult Index()
         {
             var model = _futureEmployeeRepository.GetFutureEmployees();
             return View(model);
         }
+
+
+        [AllowAnonymous]
+        public ActionResult Application()
+        {
+            return View();
+        }
+
+
         [HttpGet]
         public ActionResult AddJob()
         {

@@ -31,7 +31,7 @@ namespace HRDepartment.Models
         public int PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address!")]
-        [Display(Name = "Email address")]
+        [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -45,6 +45,7 @@ namespace HRDepartment.Models
         [Display(Name = "Details")]
         public string OtherDetails { get; set; }
 
+        [Display(Name = "Upload your CV")]
         public string CV { get; set; }
 
         [Display(Name = "Select technologies")]
