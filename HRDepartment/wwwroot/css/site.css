@@ -96,7 +96,7 @@ body {
     height: 180px;
     background-color: #2c54b2;
     margin-bottom: 0;
-    
+    white-space: nowrap;
 }
 
 #logoImage {
