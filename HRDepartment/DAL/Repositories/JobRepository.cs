@@ -53,10 +53,6 @@ namespace HRDepartment.DAL
             context.Entry(job).State = EntityState.Modified;
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
 
         private bool disposed = false;
 
@@ -78,5 +74,9 @@ namespace HRDepartment.DAL
             GC.SuppressFinalize(this);
         }
 
+        public IEnumerable<Job> GetAllJobs()
+        {
+            return context.Jobs.ToList();
+        }
     }
 }

@@ -1,0 +1,11 @@
+﻿@model Job
+
+
+<div id="jobContainer"</div>
+
+
+<script>
+    var jobs = @Html.Raw(Json.Serialize(@Model))
+</script>
+
+<script src="~/js/Job.js"></script>
