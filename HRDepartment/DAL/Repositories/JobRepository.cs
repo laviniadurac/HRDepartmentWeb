@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HRDepartment.Data;
 using HRDepartment.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRDepartment.DAL
@@ -19,9 +20,16 @@ namespace HRDepartment.DAL
             this.context = context;
         }
 
-        public IEnumerable<Job> GetJobs()
+        public List<SelectListItem> GetJobs()
         {
-            return context.Jobs.ToList();
+            return context.Jobs
+                .Select(x =>
+                    new SelectListItem
+                    {
+                        Value = x.JobId.ToString(),
+                        Text = x.JobName
+                    }
+                ).ToList();
         }
 
         public Job GetJobByID(int id)
@@ -68,6 +76,8 @@ namespace HRDepartment.DAL
             GC.SuppressFinalize(this);
         }
 
+<<<<<<< HEAD
+=======
         public IEnumerable<Job> GetAllJobs()
         {
             return context.Jobs.ToList();
@@ -76,5 +86,6 @@ namespace HRDepartment.DAL
         {
             context.SaveChanges();
         }
+>>>>>>> 8fdd9118eb385d3a34ae65316bf3a9eb6cab4264
     }
 }

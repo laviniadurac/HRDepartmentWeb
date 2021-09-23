@@ -76,7 +76,7 @@ namespace HRDepartment.Controllers
 
         public ActionResult ListJobs()
         {
-            var jobsList = _jobRepository.GetAllJobs().ToList();
+            var jobsList = _jobRepository.GetJobs().ToList();
             ViewBag.Jobs = new SelectList(jobsList, "JobId", "JobName");
             return View(jobsList);
         }

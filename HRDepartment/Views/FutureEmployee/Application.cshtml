@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+﻿@model HRDepartment.ViewModels.JobListViewModel
+=======
 ﻿@using HRDepartment.ViewModels
 @model HRDepartment.Models.FutureEmployee
+>>>>>>> 8fdd9118eb385d3a34ae65316bf3a9eb6cab4264
 
 <form>
 
@@ -14,9 +18,9 @@
         <h1 class="title-formular">Personal Details</h1>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.EmployeeName, new { @class = "control-label" })
+            @Html.LabelFor(m => m.FutureEmployee.EmployeeName, new { @class = "control-label" })
             <div>
-                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.FutureEmployee.EmployeeName, new { @class = "form-control" })
             </div>
         </div>
 
@@ -24,25 +28,25 @@
         <div class="form-row">
 
             <div class="form-group col-md-6">
-                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                @Html.LabelFor(m => m.FutureEmployee.Email, new { @class = "control-label" })
                 <div>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.FutureEmployee.Email, new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="form-group col-md-6">
-                @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label" })
+                @Html.LabelFor(m => m.FutureEmployee.PhoneNumber, new { @class = "control-label" })
                 <div>
-                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.FutureEmployee.PhoneNumber, new { @class = "form-control" })
                 </div>
             </div>
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+            @Html.LabelFor(m => m.FutureEmployee.Address, new { @class = "control-label" })
             <div>
-                @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
+                @Html.TextAreaFor(m => m.FutureEmployee.Address, new { @class = "form-control" })
             </div>
         </div>
 
@@ -58,7 +62,7 @@
 
                     <th>
 
-                        @Html.DropDownList("Jobs", ViewBag.Jobs as SelectList, "--Select Job --", new { style = "width:180px;" })
+                        @Html.DropDownList("Jobs", Model.Jobs, "--Select Job--", new { style = "width:180px;" })
 
                     </th>
                 </tr>
@@ -72,17 +76,17 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(m => m.OtherDetails, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.FutureEmployee.OtherDetails, new { @class = "col-md-2 control-label" })
             <div>
-                @Html.TextAreaFor(m => m.OtherDetails, new { @class = "form-control" })
+                @Html.TextAreaFor(m => m.FutureEmployee.OtherDetails, new { @class = "form-control" })
             </div>
         </div>
 
 
         <div class="form-group" id="cv">
-            @Html.LabelFor(m => m.CV, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.FutureEmployee.CV, new { @class = "col-md-2 control-label" })
             <div>
-                @Html.TextBoxFor(m => m.CV, new { @type = "file", @multiple = "multiple", name = "Files", id = "CV" })
+                @Html.TextBoxFor(m => m.FutureEmployee.CV, new { @type = "file", @multiple = "multiple", name = "Files", id = "CV" })
             </div>
         </div>
 

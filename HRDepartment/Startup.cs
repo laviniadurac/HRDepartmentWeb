@@ -42,6 +42,8 @@ namespace HRDepartment
 
             services.AddScoped<IJobRepository, JobRepository>();
 
+            services.AddScoped<IFutureEmployeeRepository, FutureEmployeeRepository>();
+
             services.AddHttpContextAccessor();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -70,7 +72,7 @@ namespace HRDepartment
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Job}/{action=ListJobs}/{id?}");
+                    pattern: "{controller=FutureEmployee}/{action=Application}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

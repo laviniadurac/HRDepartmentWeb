@@ -1,8 +1,10 @@
 ﻿using HRDepartment.DAL;
 using HRDepartment.Data;
 using HRDepartment.Models;
+using HRDepartment.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +15,13 @@ namespace HRDepartment.Controllers
     public class FutureEmployeeController : Controller
     {
         IFutureEmployeeRepository _futureEmployeeRepository;
-        public FutureEmployeeController()
-        {
-            _futureEmployeeRepository = new FutureEmployeeRepository(new ApplicationDbContext());
-        }
+        IJobRepository _jobRepository;
 
-        //public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository)
-        //{
-        //    _futureEmployeeRepository = futureEmployeeRepository;
-        //}
+        public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository, IJobRepository jobRepository)
+        {
+            _futureEmployeeRepository = futureEmployeeRepository;
+            _jobRepository = jobRepository;
+        }
 
         [HttpGet]
         public ActionResult Index()
@@ -34,7 +34,13 @@ namespace HRDepartment.Controllers
         [AllowAnonymous]
         public ActionResult Application()
         {
-            return View();
+           
+            var jobListVM = new JobListViewModel
+            {
+                FutureEmployee = new FutureEmployee(),
+                Jobs = _jobRepository.GetJobs()
+            };
+            return View(jobListVM);
         }
 
 
