@@ -1,4 +1,5 @@
 ﻿using HRDepartment.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace HRDepartment.ViewModels
 {
     public class JobListViewModel
     {
-        public List<Job> Jobs { get; set; }
-        public List<FutureEmployee> FutureEmployees { get; set; }
+        public List<SelectListItem> Jobs { get; set; }
+        public FutureEmployee FutureEmployee { get; set; }
     }
 }
