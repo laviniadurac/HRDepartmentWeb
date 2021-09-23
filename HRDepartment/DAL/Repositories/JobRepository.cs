@@ -51,6 +51,7 @@ namespace HRDepartment.DAL
         public void UpdateJob(Job job)
         {
             context.Entry(job).State = EntityState.Modified;
+            Save();
         }
 
 
