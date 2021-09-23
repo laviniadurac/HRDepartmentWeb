@@ -14,5 +14,6 @@ namespace HRDepartment.DAL
         void DeleteJob(int jobID);
         void UpdateJob(Job job);
         void Save();
+        IEnumerable<Job> GetAllJobs();
     }
 }

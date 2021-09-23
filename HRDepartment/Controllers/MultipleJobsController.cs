@@ -1,4 +1,5 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,7 +14,7 @@ namespace HRDepartment.Controllers
         IMultipleJobsRepository _multipleJobsRepository;
         public MultipleJobsController()
         {
-            _multipleJobsRepository = new MultipleJobsRepository(new HrContext());
+            _multipleJobsRepository = new MultipleJobsRepository(new ApplicationDbContext());
         }
         public MultipleJobsController(IMultipleJobsRepository multipleJobsRepository)
         {

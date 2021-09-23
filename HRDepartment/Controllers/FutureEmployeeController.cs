@@ -1,4 +1,5 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace HRDepartment.Controllers
         IFutureEmployeeRepository _futureEmployeeRepository;
         public FutureEmployeeController()
         {
-            _futureEmployeeRepository = new FutureEmployeeRepository(new HrContext());
+            _futureEmployeeRepository = new FutureEmployeeRepository(new ApplicationDbContext());
         }
 
         //public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository)

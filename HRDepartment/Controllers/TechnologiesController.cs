@@ -1,4 +1,5 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,7 +14,7 @@ namespace HRDepartment.Controllers
         ITechnologiesRepository _technologyRepository;
         public TechnologiesController()
         {
-            _technologyRepository = new TechnologiesRepository(new HrContext());
+            _technologyRepository = new TechnologiesRepository(new ApplicationDbContext());
         }
         public TechnologiesController(ITechnologiesRepository technologyRepository)
         {

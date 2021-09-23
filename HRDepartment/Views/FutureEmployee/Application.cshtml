@@ -1,5 +1,7 @@
-﻿@model HRDepartment.Models.FutureEmployee
+﻿
 
+@using HRDepartment.ViewModels
+@model HRDepartment.Models.FutureEmployee
 
 <form>
 
@@ -49,6 +51,22 @@
 
         <h1 class="title-formular">Job</h1>
         <br /><br /><br /><br />
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+
+                        @Html.DropDownList("Jobs", ViewBag.Jobs as SelectList, "--Select Job --", new { style = "width:180px;" })
+
+                    </th>
+                </tr>
+            </thead>
+
+        </table>
 
 
         <h1 class="title-formular">Experience</h1>

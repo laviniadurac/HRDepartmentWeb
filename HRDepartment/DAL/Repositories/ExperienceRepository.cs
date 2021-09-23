@@ -1,4 +1,5 @@
-﻿using HRDepartment.Models;
+﻿using HRDepartment.Data;
+using HRDepartment.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ namespace HRDepartment.DAL
 {
     public class ExperienceRepository : IExperienceRepository, IDisposable
     {
-        private HrContext context;
+        private ApplicationDbContext context;
 
-        public ExperienceRepository(HrContext context)
+        public ExperienceRepository(ApplicationDbContext context)
         {
             this.context = context;
         }

@@ -39,9 +39,11 @@ namespace HRDepartment
             services.AddControllersWithViews();
 
             services.AddMvcCore();
-           
 
-            
+            services.AddScoped<IJobRepository, JobRepository>();
+
+            services.AddHttpContextAccessor();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 
@@ -68,7 +70,7 @@ namespace HRDepartment
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Job}/{action=ListJobs}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

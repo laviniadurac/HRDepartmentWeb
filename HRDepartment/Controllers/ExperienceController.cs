@@ -1,4 +1,5 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,7 +15,7 @@ namespace HRDepartment.Controllers
         IExperienceRepository _experienceRepository;
         public ExperienceController()
         {
-            _experienceRepository = new ExperienceRepository(new HrContext());
+            _experienceRepository = new ExperienceRepository(new ApplicationDbContext());
         }
         public ExperienceController(IExperienceRepository experienceRepository)
         {

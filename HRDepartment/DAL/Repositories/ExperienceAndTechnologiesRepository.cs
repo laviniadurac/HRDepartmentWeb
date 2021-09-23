@@ -1,4 +1,5 @@
-﻿using HRDepartment.Models;
+﻿using HRDepartment.Data;
+using HRDepartment.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace HRDepartment.DAL
     {
 
 
-        private HrContext context;
+        private ApplicationDbContext context;
 
-        public ExperienceAndTechnologiesRepository(HrContext context)
+        public ExperienceAndTechnologiesRepository(ApplicationDbContext context)
         {
             this.context = context;
         }

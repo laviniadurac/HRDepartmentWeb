@@ -1,4 +1,5 @@
-﻿using HRDepartment.Models;
+﻿using HRDepartment.Data;
+using HRDepartment.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ namespace HRDepartment.DAL
 {
     public class FutureEmployeeTechnologiesRepository : IFutureEmployeeTechnologiesRepository, IDisposable
     {
-        private HrContext context;
+        private ApplicationDbContext context;
 
-        public FutureEmployeeTechnologiesRepository(HrContext context)
+        public FutureEmployeeTechnologiesRepository(ApplicationDbContext context)
         {
             this.context = context;
         }

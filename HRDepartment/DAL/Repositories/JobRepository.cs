@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +11,10 @@ namespace HRDepartment.DAL
     public class JobRepository: IJobRepository, IDisposable
     {
 
-        private HrContext context;
+        private ApplicationDbContext context;
 
-        public JobRepository(HrContext context)
+
+        public JobRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -66,6 +68,11 @@ namespace HRDepartment.DAL
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public IEnumerable<Job> GetAllJobs()
+        {
+            return context.Jobs.ToList();
         }
     }
 }

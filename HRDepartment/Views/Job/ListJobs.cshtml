@@ -1,0 +1,18 @@
+﻿@model IEnumerable<HRDepartment.Models.Job>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+         
+            <th>
+
+                @Html.DropDownList("jobs", ViewBag.Jobs as SelectList, "--Select Job --", new { style = "width:180px;" })
+
+            </th>
+        </tr>
+    </thead>
+
+</table>

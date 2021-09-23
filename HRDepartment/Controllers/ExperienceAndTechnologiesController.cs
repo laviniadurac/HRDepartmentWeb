@@ -1,4 +1,5 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,7 +14,7 @@ namespace HRDepartment.Controllers
         private readonly IExperienceAndTechnologiesRepository _experienceAndTechnologyRepository;
         public ExperienceAndTechnologiesController()
         {
-            _experienceAndTechnologyRepository = new ExperienceAndTechnologiesRepository(new HrContext());
+            _experienceAndTechnologyRepository = new ExperienceAndTechnologiesRepository(new ApplicationDbContext());
         }
         public ExperienceAndTechnologiesController(IExperienceAndTechnologiesRepository experienceAndTechnologyRepository)
         {

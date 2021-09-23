@@ -1,4 +1,5 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,7 +14,7 @@ namespace HRDepartment.Controllers
         IFutureEmployeeTechnologiesRepository _futureEmployeeTechnologiesRepository;
         public FutureEmployeeTechnologiesController()
         {
-            _futureEmployeeTechnologiesRepository = new FutureEmployeeTechnologiesRepository(new HrContext());
+            _futureEmployeeTechnologiesRepository = new FutureEmployeeTechnologiesRepository(new ApplicationDbContext());
         }
         public FutureEmployeeTechnologiesController(IFutureEmployeeTechnologiesRepository futureEmployeeTechnologiesRepository)
         {

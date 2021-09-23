@@ -1,6 +1,8 @@
 ﻿using HRDepartment.DAL;
+using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +10,17 @@ using System.Linq;
 namespace HRDepartment.Controllers
 {
     public class JobController : Controller
+{
+        private IJobRepository _jobRepository;
+       
+        //GET: JOB
 
-    {
-        IJobRepository _jobRepository;
         public JobController()
         {
-            _jobRepository = new JobRepository(new HrContext());
+            this._jobRepository = new JobRepository(new ApplicationDbContext());
         }
-        public JobController(IJobRepository jobRepository)
-        {
-            _jobRepository = jobRepository;
-        }
+
+      
         [HttpGet]
         public ActionResult Index()
         {
@@ -76,9 +78,11 @@ namespace HRDepartment.Controllers
             return RedirectToAction("Index", "Employee");
         }
 
-        public ViewResult ListOfJobs()
+        public ActionResult ListJobs()
         {
-            return View(_jobRepository.GetJobs());
+            var jobsList = _jobRepository.GetAllJobs().ToList();
+            ViewBag.Jobs = new SelectList(jobsList, "JobId", "JobName");
+            return View(jobsList);
         }
 
     }
