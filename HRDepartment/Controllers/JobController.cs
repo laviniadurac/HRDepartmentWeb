@@ -20,7 +20,6 @@ namespace HRDepartment.Controllers
             this._jobRepository = new JobRepository(new ApplicationDbContext());
         }
 
-      
         [HttpGet]
         public ActionResult Index()
         {
@@ -38,7 +37,6 @@ namespace HRDepartment.Controllers
             if (ModelState.IsValid)
             {
                 _jobRepository.InsertJob(model);
-                _jobRepository.Save();
                 return RedirectToAction("Index", "Employee"); // MODIFICAM
             }
             return View();
@@ -56,7 +54,6 @@ namespace HRDepartment.Controllers
             if (ModelState.IsValid)
             {
                 _jobRepository.UpdateJob(model);
-                _jobRepository.Save();
                 return RedirectToAction("Index", "Employee");// MODIFICAM
             }
             else
@@ -74,7 +71,6 @@ namespace HRDepartment.Controllers
         public ActionResult Delete(int jobID)
         {
             _jobRepository.DeleteJob(jobID);
-            _jobRepository.Save();
             return RedirectToAction("Index", "Employee");
         }
 

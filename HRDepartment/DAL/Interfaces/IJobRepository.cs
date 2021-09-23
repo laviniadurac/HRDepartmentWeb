@@ -13,7 +13,6 @@ namespace HRDepartment.DAL
         void InsertJob(Job job);
         void DeleteJob(int jobID);
         void UpdateJob(Job job);
-        void Save();
         IEnumerable<Job> GetAllJobs();
     }
 }

@@ -43,12 +43,10 @@ namespace HRDepartment.DAL
         public void UpdateJob(Job job)
         {
             context.Entry(job).State = EntityState.Modified;
+            Save();
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+        
 
         private bool disposed = false;
 
@@ -73,6 +71,10 @@ namespace HRDepartment.DAL
         public IEnumerable<Job> GetAllJobs()
         {
             return context.Jobs.ToList();
+        }
+        private void Save()
+        {
+            context.SaveChanges();
         }
     }
 }
