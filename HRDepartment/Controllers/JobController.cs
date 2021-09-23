@@ -23,7 +23,7 @@ namespace HRDepartment.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = _jobRepository.GetJobs();
+            var model = _jobRepository.GetAllJobs();
             return View(model);
         }
         [HttpGet]

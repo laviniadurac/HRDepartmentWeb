@@ -1,11 +1,12 @@
-﻿@model Job
+﻿@model IEnumerable<HRDepartment.Models.Job>
 
 
-<div id="jobContainer"</div>
+<div id="jobContainer"></div>
 
 
 <script>
     var jobs = @Html.Raw(Json.Serialize(@Model))
 </script>
+
 
 <script src="~/js/Job.js"></script>

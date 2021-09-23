@@ -31,7 +31,7 @@ namespace HRDepartment.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult Application()
         {
            
