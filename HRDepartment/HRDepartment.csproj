@@ -4,6 +4,16 @@
     <UserSecretsId>aspnet-HRDepartment-74D6F8CA-5AE4-474E-890D-1FC127205356</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Models\EF\**" />
+    <Compile Remove="Views\DataGrid\**" />
+    <Content Remove="Models\EF\**" />
+    <Content Remove="Views\DataGrid\**" />
+    <EmbeddedResource Remove="Models\EF\**" />
+    <EmbeddedResource Remove="Views\DataGrid\**" />
+    <None Remove="Models\EF\**" />
+    <None Remove="Views\DataGrid\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
     <PackageReference Include="jQuery" Version="3.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.9" />
@@ -18,9 +28,5 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="21.1.5" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\EF\" />
-    <Folder Include="Views\DataGrid\" />
   </ItemGroup>
 </Project>
