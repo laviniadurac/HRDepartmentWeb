@@ -54,6 +54,7 @@ namespace HRDepartment.DAL
             Save();
         }
 
+        
 
         private bool disposed = false;
 
@@ -75,9 +76,16 @@ namespace HRDepartment.DAL
             GC.SuppressFinalize(this);
         }
 
+<<<<<<< HEAD
+=======
         public IEnumerable<Job> GetAllJobs()
         {
             return context.Jobs.ToList();
         }
+        private void Save()
+        {
+            context.SaveChanges();
+        }
+>>>>>>> 8fdd9118eb385d3a34ae65316bf3a9eb6cab4264
     }
 }
