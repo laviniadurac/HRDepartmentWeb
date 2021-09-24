@@ -1,4 +1,4 @@
-var Job= (function () {
+var Job = (function () {
     function _executeAjax(method, route, toDo, bodyData) {
         return $.ajax({
             type: method,
@@ -20,9 +20,6 @@ var Job= (function () {
     async function _updateDataSource(result) {
         $("#jobContainer").dxDataGrid("option", "dataSource", result);
     }
-
-
-
 
 
     function _loadData() {
@@ -55,28 +52,28 @@ var Job= (function () {
                     width: 700,
                     height: 500
                 },
-                form: {
-                    items: [{
-                        itemType: "group",
-                        colCount: 2,
-                        colSpan: 2,
-                        items: [
-                            {
-                                dataField: "orderId",
-                                editorOptions:
-                                {
-                                    disabled: true
-                                },
-                                visible: false
-                            },
+                //form: {
+                //    items: [{
+                //        itemType: "group",
+                //        colCount: 2,
+                //        colSpan: 2,
+                //        items: [
+                //            {
+                //                dataField: "orderId",
+                //                editorOptions:
+                //                {
+                //                    disabled: true
+                //                },
+                //                visible: false
+                //            },
 
 
 
-                            "submitOrderDate",
-                            "totalAmount",
-                            "estimativeDeliveryDate"]
-                    }]
-                }
+                //            "submitOrderDate",
+                //            "totalAmount",
+                //            "estimativeDeliveryDate"]
+                //    }]
+                //}
             },
             columns: [
                 {
@@ -91,11 +88,9 @@ var Job= (function () {
                     allowFiltering: false
                 },
 
-
-
                 {
                     dataField: "isAvailable",
-                    dataType: "date",
+                    dataType: "bool",
                     allowFiltering: true
                 },
                 {
@@ -105,7 +100,7 @@ var Job= (function () {
 
 
                         onClick: async function (e) {
-                            _executeAjax("GET", "/Orders/GetAllOrder", _updateDataSource);
+                            _executeAjax("GET", "/Job/Index", _updateDataSource);
                         }
                     }
                     ]
@@ -122,8 +117,8 @@ var Job= (function () {
             onInitNewRow: function (e) {
             },
             onRowInserting: async function (e) {
-                await _executeAjax("POST", "/Orders/AddOrder/", updateAlerts, JSON.stringify(e.data));
-                _executeAjax("GET", "/Orders/GetAllOrder", _updateDataSource);
+                await _executeAjax("POST", "/Job/AddJob/", updateAlerts, JSON.stringify(e.data));
+                _executeAjax("GET", "/Job/GetJobs", _updateDataSource);
             },
             onRowInserted: function (e) {
 
@@ -143,7 +138,7 @@ var Job= (function () {
 
             },
             onRowRemoved: function (e) {
-                _executeAjax("DELETE", "/Orders/RemoveOrder/", updateAlerts, JSON.stringify(e.data.orderId));
+                _executeAjax("DELETE", "/Job/DeleteJob/", updateAlerts, JSON.stringify(e.data.orderId));
             },
             onSaving: function (e) {
 

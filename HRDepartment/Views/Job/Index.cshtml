@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-﻿@model IEnumerable<HRDepartment.Models.Job>
-
+@model Job
 
 <div id="jobContainer"></div>
 
@@ -10,20 +8,5 @@
 </script>
 
 
-<script src="~/js/Job.js"></script>
-=======
-﻿
-@using HRDepartment.Models;
+<script src="~/js/Job.js"></script>﻿
 
-@model HRDepartment.Models.Job
-
-
-@foreach (Job customer in ViewBag.Jobs)
-{
-    <tr>
-        <td>@customer.JobId</td>
-        <td>@customer.JobName</td>
-        <br/>
-    </tr>
-}
->>>>>>> Stashed changes

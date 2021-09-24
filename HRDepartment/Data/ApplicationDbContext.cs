@@ -13,7 +13,7 @@ namespace HRDepartment.Data
             : base(options)
         {
         }
-<<<<<<< Updated upstream
+
 
         public ApplicationDbContext() { }
         public DbSet<Job> Jobs { get; set; }
@@ -38,8 +38,5 @@ namespace HRDepartment.Data
             modelBuilder.Entity<Job>().HasData(new Job { JobId = 4, JobName = "Data Scientist", IsAvailable = true });
 
         }
-=======
-      
->>>>>>> Stashed changes
     }
 }

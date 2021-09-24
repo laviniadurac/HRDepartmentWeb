@@ -6,51 +6,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-   
+
 namespace HRDepartment.Controllers
 {
     public class JobController : Controller
-{
+    {
         private IJobRepository _jobRepository;
-       
-        //GET: JOB
 
-<<<<<<< Updated upstream
+
         public JobController()
         {
             this._jobRepository = new JobRepository(new ApplicationDbContext());
         }
-=======
-    {
-      
-        IJobRepository _jobRepository;
-        public JobController()
-        {
-            _jobRepository = new JobRepository(new HrContext());
-        }
-        //public JobController(IJobRepository jobRepository)
-        //{
-        //    _jobRepository = jobRepository;
-        //}
->>>>>>> Stashed changes
 
         [HttpGet]
 
         public ActionResult Index()
-<<<<<<< Updated upstream
+
         {
-            var model = _jobRepository.GetAllJobs();
+            var model = _jobRepository.GetAllJobs().FirstOrDefault(); ;
             return View(model);
-=======
-        { 
-        
-         
-            ViewBag.Jobs = _jobRepository.GetJobs();
-      
-            return View();
 
-
->>>>>>> Stashed changes
         }
 
         [HttpGet]
@@ -109,4 +85,6 @@ namespace HRDepartment.Controllers
         }
 
     }
+
 }
+
