@@ -10,3 +10,18 @@
 
 
 <script src="~/js/Job.js"></script>
+=======
+@using HRDepartment.Models;
+
+@model HRDepartment.Models.Job
+
+
+@foreach (Job customer in ViewBag.Jobs)
+{
+    <tr>
+        <td>@customer.JobId</td>
+        <td>@customer.JobName</td>
+        <br/>
+    </tr>
+}
+>>>>>>> Stashed changes

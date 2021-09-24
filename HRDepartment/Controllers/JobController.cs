@@ -19,13 +19,34 @@ namespace HRDepartment.Controllers
         {
             this._jobRepository = new JobRepository(new ApplicationDbContext());
         }
+    {
+      
+        IJobRepository _jobRepository;
+        public JobController()
+        {
+            _jobRepository = new JobRepository(new HrContext());
+        }
+        //public JobController(IJobRepository jobRepository)
+        //{
+        //    _jobRepository = jobRepository;
+        //}
 
         [HttpGet]
+
         public ActionResult Index()
         {
             var model = _jobRepository.GetAllJobs();
             return View(model);
+        { 
+        
+         
+            ViewBag.Jobs = _jobRepository.GetJobs();
+      
+            return View();
+
+
         }
+
         [HttpGet]
         public ActionResult AddJob()
         {

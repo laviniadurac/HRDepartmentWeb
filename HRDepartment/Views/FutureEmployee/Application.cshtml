@@ -49,6 +49,11 @@
         <h1 class="title-formular">Job</h1>
         <br /><br /><br /><br />
 
+        <input type="button" value="Create" onclick="location.href='@Url.Action("Index", "Job")'" />
+
+
+        @Html.DropDownList("JobId", ViewBag.Jobs as SelectList, "--Select Job --", new { style = "width:180px;" })
+
 
 
         <table class="table">
@@ -91,8 +96,6 @@
                 <input type="submit" class="button button4" value="Submit" />
             </div>
         </div>
-
-
 
     }
 </form>
