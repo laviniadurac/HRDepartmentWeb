@@ -15,10 +15,12 @@ namespace HRDepartment.Controllers
        
         //GET: JOB
 
+<<<<<<< Updated upstream
         public JobController()
         {
             this._jobRepository = new JobRepository(new ApplicationDbContext());
         }
+=======
     {
       
         IJobRepository _jobRepository;
@@ -30,13 +32,16 @@ namespace HRDepartment.Controllers
         //{
         //    _jobRepository = jobRepository;
         //}
+>>>>>>> Stashed changes
 
         [HttpGet]
 
         public ActionResult Index()
+<<<<<<< Updated upstream
         {
             var model = _jobRepository.GetAllJobs();
             return View(model);
+=======
         { 
         
          
@@ -45,6 +50,7 @@ namespace HRDepartment.Controllers
             return View();
 
 
+>>>>>>> Stashed changes
         }
 
         [HttpGet]
