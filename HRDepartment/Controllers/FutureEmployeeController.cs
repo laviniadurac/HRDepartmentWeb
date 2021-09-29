@@ -16,11 +16,36 @@ namespace HRDepartment.Controllers
     {
         IFutureEmployeeRepository _futureEmployeeRepository;
         IJobRepository _jobRepository;
+        ITechnologiesRepository _technologiesRepository;
+        IExperienceRepository _experienceRepository;
 
-        public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository, IJobRepository jobRepository)
+        public FutureEmployeeController(IFutureEmployeeRepository futureEmployeeRepository, IJobRepository jobRepository, ITechnologiesRepository technologiesRepository, IExperienceRepository experienceRepository)
         {
             _futureEmployeeRepository = futureEmployeeRepository;
             _jobRepository = jobRepository;
+            _technologiesRepository = technologiesRepository;
+            _experienceRepository = experienceRepository;
+        }
+
+        public IActionResult Create(JobListViewModel jobListViewModel, List<string> TechItems)
+        {
+            var futureEmployee = new FutureEmployee()
+            {
+                EmployeeName = jobListViewModel.EmployeeName,
+                PhoneNumber = jobListViewModel.PhoneNumber,
+                Address = jobListViewModel.Address,
+                Email = jobListViewModel.Email,
+                OtherDetails = jobListViewModel.OtherDetails,
+                CV = jobListViewModel.CV,
+                Experience = jobListViewModel.ExperienceItem,
+                
+                
+            };
+
+            AddFutureEmployee(futureEmployee);
+
+            //return RedirectToAction("NumeMetoda", "NumeController");
+            return View();
         }
 
         [HttpGet]
@@ -31,14 +56,24 @@ namespace HRDepartment.Controllers
         }
 
 
-        //[AllowAnonymous]
         public ActionResult Application()
         {
-           
+
             var jobListVM = new JobListViewModel
             {
                 FutureEmployee = new FutureEmployee(),
-                Jobs = _jobRepository.GetJobs()
+                Jobs = _jobRepository.GetJobs(),
+                Technologies = _technologiesRepository.GetTechnologies(),
+                Experiences = _experienceRepository.GetExperiences().ConvertAll(x =>
+                {
+                    return new SelectListItem()
+                    {
+                        Text = x.ToString(),
+                        Value = x.ToString(),
+                        Selected = false
+                    };
+                }),
+
             };
             return View(jobListVM);
         }
@@ -49,19 +84,20 @@ namespace HRDepartment.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult AddFutureEmployee(FutureEmployee model)
+        public void AddFutureEmployee(FutureEmployee model)
         {
-            if (ModelState.IsValid)
-            {
+            ///summary
+            ///we will comment modelstate for back-end testing purposes
+           // if (ModelState.IsValid)
+            //{
                 _futureEmployeeRepository.InsertFutureEmployee(model);
                 _futureEmployeeRepository.Save();
-                return RedirectToAction("Index", "Employee"); // MODIFICAM
-            }
-            return View();
+               
+            //}
         }
+
         [HttpGet]
-        public ActionResult EditFutureEmployee(int futureEmployeeId)
+        public ActionResult GetFutureEmployeeById(int futureEmployeeId)
         {
             FutureEmployee model = _futureEmployeeRepository.GetFutureEmployeeByID(futureEmployeeId);
             return View(model);
@@ -81,12 +117,7 @@ namespace HRDepartment.Controllers
                 return View(model);
             }
         }
-        [HttpGet]
-        public ActionResult DeleteFutureEmployee(int futureEmployeeId)
-        {
-            FutureEmployee model = _futureEmployeeRepository.GetFutureEmployeeByID(futureEmployeeId);
-            return View(model);
-        }
+       
         [HttpPost]
         public ActionResult Delete(int futureEmployeeID)
         {

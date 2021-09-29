@@ -1,0 +1,13 @@
+﻿#welcome-img {
+    background-image: url('../images/welcomeBg.png') !important;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 400px;
+    background-size: 100%;
+}
+body {
+    font-family: Georgia, serif;
+}
+#workouts-section > div > a > div {
+    font-size: 2vw !important;
+}

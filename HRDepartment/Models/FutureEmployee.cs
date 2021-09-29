@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HRDepartment.Models
 {
@@ -28,7 +30,7 @@ namespace HRDepartment.Models
         [Display(Name = "Phone number")]
         [Phone]
         [RegularExpression(@"^\(?([07]{2})\)?([0-9]{8})$", ErrorMessage = "Numarul introdus nu respecta formatul 07xx xxx xxx.")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address!")]
         [Display(Name = "Email")]
@@ -49,7 +51,7 @@ namespace HRDepartment.Models
         public string CV { get; set; }
 
         [Display(Name = "Select technologies")]
-        public string Technologies { get; set; }
-        public int Experience { get; set; }
+        public List<Technologies> Technologies { get; set; }
+        public string Experience { get; set; }
     }
 }

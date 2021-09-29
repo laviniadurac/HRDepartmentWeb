@@ -1,0 +1,51 @@
+﻿@model HRDepartment.ViewModels.JobListViewModel
+
+
+<h1 class="title-formular" style="margin-bottom:70px;">Experience</h1>
+
+<h3 class="text-primary" style="font-weight:bolder; margin-bottom:20px;">Select the technologies known from the list below.</h3>
+
+<div class="form-group">
+    <select id="technologies" class="selectpicker" asp-for="TechItems" multiple style="width:230px;">
+
+        @foreach (var item in @Model.Technologies)
+        {
+            if (item.TechnologyName != null)
+            {
+                <option value="@item.TechnologyName">
+                    @item.TechnologyName
+                </option>
+
+            }
+        }
+    </select>
+</div>
+<hr />
+
+<h3 class="text-primary" style="font-weight:bolder; margin-bottom:20px; margin-top:30px;">Select your years of experience.</h3>
+
+
+
+<div class="form-group">
+    <text>Select experience: </text>
+    @Html.DropDownList("ExperienceItem", Model.Experiences, htmlAttributes: new {@class = "form-control"})
+    <span asp-validation-for="ExperienceItem" class="text-danger" />
+</div>
+
+
+<hr />
+
+<div class="form-group">
+    <h3 class="text-primary" style="font-weight:bolder; margin-bottom:20px; margin-top:30px;">Details:</h3>
+    <textarea asp-for="OtherDetails" type="text" class="form-control" rows="5" id="otherDetailsId" autofocus></textarea>
+</div>
+<hr />
+
+<div class="form-group">
+    <h3 class="text-primary" style="font-weight:bolder; margin-bottom:20px; margin-top:30px;">
+        @Html.LabelFor(m => m.FutureEmployee.CV, new { @class = "control-label" })
+    </h3>
+    <div>
+        @Html.TextBoxFor(m => m.FutureEmployee.CV, new { @type = "file", @multiple = "multiple", name = "Files", id = "CV" })
+    </div>
+</div>

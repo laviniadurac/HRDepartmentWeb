@@ -1,5 +1,6 @@
 ﻿using HRDepartment.Data;
 using HRDepartment.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace HRDepartment.DAL
             this.context = context;
         }
 
-        public IEnumerable<Experience> GetExperiences()
+        public List<string> GetExperiences()
         {
-            return context.Experiences.ToList();
+            return context.Experiences.Select(x => x.YearsOfExperience).ToList();
         }
 
 

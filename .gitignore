@@ -56,3 +56,4 @@ FactoryManagement/.vs/FactoryManagement/config/applicationhost.config
 FactoryManagement/.vs/FactoryManagement/DesignTimeBuild/.dtbcache.v2
 FactoryManagement/.vs/FactoryManagement/config/debuggerConfiguration-8df2ba36-4b60-4bc4-b796-387978dd4935.json
 *.config
+*.v2

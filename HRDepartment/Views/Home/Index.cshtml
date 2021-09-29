@@ -1,8 +1,101 @@
-﻿@{
-    ViewData["Title"] = "Job Application";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/welcome.css" />
+</head>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+    <div id="welcome-img" class="bg-image d-flex justify-content-center w-100 align-items-center" data-aos="flip-up">
+        <h1 class="text-center text-white display-3" style="text-shadow: 2px 2px 5px black;">Welcome to SLAV Company!</h1>
+    </div>
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 offset-md-1">
+                <div class="card border-0 py-1" style="width: 12rem;" data-aos="zoom-in-right">
+                    <img class="card-img-top" src="~/images/registration.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title text-center"><strong>Register</strong></h4>
+                        <h5 class="card-text text-center">You can create an account and get started.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 offset-md-2">
+                <div class="card border-0 py-1" style="width: 12rem;" data-aos="zoom-out">
+                    <img class="card-img-top" src="~/images/log-in.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title text-center"><strong>Log in</strong></h4>
+                        <h5 class="card-text text-center">You can login to your account.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 offset-md-2">
+                <div class="card border-0 py-1" style="width: 12rem;" data-aos="zoom-in-left">
+                    <img class="card-img-top" src="~/images/jobApplication.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title text-center"><strong>Apply to one of our jobs!</strong></h4>
+                        <h5 class="card-text text-center">You can apply to any job that suits you!</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="container-fluid w-100" data-aos="fade-right">
+        <h2 class="display-4 text-center text-primary" style="text-shadow: 2px 2px 3px black; margin-bottom:40px;"><ins>About our company</ins></h2>
+        <div class="text-center text-dark">
+            <h5 class="text-primary">
+                <strong>
+                    SLAV is a software development company established by Durac Maria-Lavinia, Bariz Alexandra-Stefania, Morariu Stefan-Adrian and Samoila Viorel,
+                    developers who helped create lots of other projects. The company was founded in 2008 in Brasov,
+                    Romania, which expanded to Bucuresti, Cluj, Timisoara and is seeking to expand to Europe in the next few years.
+                </strong>
+            </h5>
+            <h5 class="text-primary">
+                <strong>
+                    We bring customized software programs modeled to answer your needs or to improve your existing system. We help evaluate your process and present the
+                    best possible solution to bring excellent results and upgrade your operations in any area or process.
+                </strong>
+            </h5>
+        </div>
+    </div>
+
+    <div id="workouts-section" class="container-fluid w-100 m-0 p-0">
+        <br>
+        <h2 class="text-center display-4 text-info" style="margin-top:70px; margin-bottom:50px;"><ins>Meet our team</ins></h2>
+        <div class="row m-0 p-0 text-center">
+            <a class="col-md link-dark">
+                <img src="~/images/lavi.png" class="img-fluid">
+                <div>Durac Maria-Lavinia</div>
+            </a>
+            <a class="col-md link-dark">
+                <img src="~/images/stefi.png" class="img-fluid">
+                <div>Bariz Alexandra-Stefania</div>
+            </a>
+            <a class="col-md link-dark">
+                <img src="~/images/adi.png" class="img-fluid">
+                <div>Morariu Stefan-Adrian</div>
+            </a>
+            <a class="col-md link-dark">
+                <img src="~/images/vio.png" class="img-fluid">
+                <div>Samoila Viorel</div>
+            </a>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

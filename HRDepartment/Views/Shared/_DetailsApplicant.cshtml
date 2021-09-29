@@ -1,0 +1,32 @@
+﻿@model HRDepartment.ViewModels.JobListViewModel
+
+<h1 class="title-formular">Personal Details</h1>
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="form-group col-lg-5">
+            <label class="h4" for="inputName" style="font-weight:bolder;">Name:</label>
+            <input type="text" class="form-control" id="inputName" asp-for="EmployeeName" placeholder="Please insert your full name..." required />
+        </div>
+        <div class="form-group col-lg-5">
+            <label class="h4" for="inputPhone" style="font-weight:bolder;">Phone number:</label>
+            <input type="tel" class="form-control" id="inputPhone" asp-for="PhoneNumber" placeholder="Please insert your phone number..." pattern=".{10}" oninput="check(this)" required />
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="form-group col-lg-5">
+            <label class="h4" for="inputEmail" style="font-weight:bolder;">Email:</label>
+            <input type="email" class="form-control" id="inputEmail" asp-for="Email" placeholder="Please insert your email address..." required />
+        </div>
+
+        <div class="form-group col-lg-5">
+            <label class="h4" for="inputAddress" style="font-weight:bolder;">Address:</label>
+            <input type="text" class="form-control" id="inputAddress" asp-for="Address" placeholder="Please insert your address..." required>
+        </div>
+    </div>
+</div>
+

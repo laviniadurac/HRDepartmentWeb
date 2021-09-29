@@ -8,8 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>HRDepartment</title>
+    <title>SLAV Company</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
     @* Uncomment to use the HtmlEditor control *@
@@ -37,17 +38,6 @@
     <script src="~/js/devextreme/jquery.js"></script>
     <script src="~/js/devextreme/bootstrap.js"></script>
 
-    @* Uncomment to use Globalize for localization *@
-    @* Docs: https://docs.devexpress.com/AspNetCore/400577#globalize *@
-    @*<script src="~/js/devextreme/cldr.js"></script>*@
-    @*<script src="~/js/devextreme/cldr/event.js"></script>*@
-    @*<script src="~/js/devextreme/cldr/supplemental.js"></script>*@
-    @*<script src="~/js/devextreme/cldr/unresolved.js"></script>*@
-    @*<script src="~/js/devextreme/globalize.js"></script>*@
-    @*<script src="~/js/devextreme/globalize/message.js"></script>*@
-    @*<script src="~/js/devextreme/globalize/number.js"></script>*@
-    @*<script src="~/js/devextreme/globalize/currency.js"></script>*@
-    @*<script src="~/js/devextreme/globalize/date.js"></script>*@
 
     @* Uncomment to enable client-side export *@
     @*<script src="~/js/devextreme/jszip.js"></script>*@
@@ -62,11 +52,15 @@
     <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
 </head>
 
-<body >
+<body>
 
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HR Department</a>
+            <a>
+                <img src="~/images/websiteLogo.png" alt="" width="80" height="80" class="d-inline-block align-text-top image-responsive">
+            </a>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomePage</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -91,6 +85,34 @@
     <main role="main" class="container">
         @RenderBody()
     </main>
+
+    <footer class="border-top footer" style="background-image: url('../images/welcomeBg.png'); background-size:cover; margin-top: 100px;">
+        <div class="container-fluid">
+
+            <nav class="navbar navbar-dark navbar-expand-md">
+                <div>
+                    <img src="~/images/websiteLogo.png" id="logoImage">
+                    <p class="text-light">str. Ionescu Crum 1, Brasov</p>
+                    <p>
+                        &copy; 2021 - SLAV Company <a asp-area="" asp-controller="Job Application"></a>
+                    <p />
+
+                </div>
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item active mx-1">
+                        <a class="nav-link text-light" href="#">Page Top</a>
+                    </li>
+                    <li class="nav-item active mx-1">
+                        <a class="nav-link text-light" asp-page="/Account/Login">Login</a>
+                    </li>
+                    <li class="nav-item active mx-1">
+                        <a class="nav-link text-light" asp-page="/Account/Register">Register</a>
+                    </li>
+                </ul>
+               
+            </nav>
+        </div>
+    </footer>
 </body>
 
 </html>

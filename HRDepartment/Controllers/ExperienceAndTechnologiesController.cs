@@ -2,6 +2,7 @@
 using HRDepartment.Data;
 using HRDepartment.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,12 +64,7 @@ namespace HRDepartment.Controllers
                 return View(model);
             }
         }
-        [HttpGet]
-        public ActionResult DeleteTechnology(int experienceAndTechnologyId)
-        {
-            ExperienceAndTechnologies model = _experienceAndTechnologyRepository.GetExperienceAndTechnologiesByID(experienceAndTechnologyId);
-            return View(model);
-        }
+      
         [HttpPost]
         public ActionResult Delete(int experienceAndTechnologyId)
         {
@@ -76,5 +72,7 @@ namespace HRDepartment.Controllers
             _experienceAndTechnologyRepository.Save();
             return RedirectToAction("Index", "Employee");
         }
+
+       
     }
 }
