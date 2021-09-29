@@ -1,14 +1,16 @@
 ﻿using HRDepartment.Data;
 using HRDepartment.Models;
+using HRDepartment.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HRDepartment.HelperVio;
 
 namespace HRDepartment.DAL
 {
-    public class FutureEmployeeRepository : IFutureEmployeeRepository, IDisposable
+    public class FutureEmployeeRepository : IFutureEmployeeRepository
     {
 
         private ApplicationDbContext context;
@@ -51,28 +53,22 @@ namespace HRDepartment.DAL
             context.SaveChanges();
         }
 
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
+        public List<EmployeeViewModel> GetEmployeeData()
         {
-            if (!this.disposed)
+            var a = context.MultipleJobsPerEmployee.Join(
+            context.FutureEmployeesTechnologies,
+            futureEmployee => futureEmployee.EmployeeId,
+            mJob => mJob.EmployeeId,
+            (futureEmployee, mJob) => new EmployeeViewModel
             {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
+                Technology = mJob.Technologies.TechnologyName,
+                JobName = futureEmployee.Job.JobName,
+                EmployeeId = futureEmployee.Employee.EmployeeId,
+                EmployeeName = futureEmployee.Employee.EmployeeName,
+                Status = StatusEnumConvert.GetEnumerator(futureEmployee.Employee.Status)
+            }).ToList();
+
+            return a;
         }
-
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-
     }
 }

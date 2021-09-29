@@ -1,0 +1,10 @@
+﻿@model List<EmployeeViewModel>
+
+<div id="futureEmployeeTableContainer" style="border: 5px outset lightblue;"></div>
+
+<script>
+    var futureEmployees = @Html.Raw(Json.Serialize(@Model));
+</script>
+
+
+<script src="~/js/FutureEmployees.js"></script>﻿
