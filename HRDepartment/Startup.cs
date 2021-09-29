@@ -1,5 +1,6 @@
 using HRDepartment.DAL;
 using HRDepartment.Data;
+using HRDepartment.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,11 +43,15 @@ namespace HRDepartment
 
             services.AddScoped<IJobRepository, JobRepository>();
 
+            services.AddScoped<IJobControllerHelper, JobControllerHelpers>();
+
             services.AddScoped<IFutureEmployeeRepository, FutureEmployeeRepository>();
 
             services.AddHttpContextAccessor();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+           
 
 
         }

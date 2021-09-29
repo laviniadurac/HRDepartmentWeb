@@ -40,18 +40,25 @@ namespace HRDepartment.DAL
         public void InsertJob(Job job)
         {
             context.Jobs.Add(job);
+            context.SaveChanges();
+
         }
 
         public void DeleteJob(int jobID)
         {
             Job job = context.Jobs.Find(jobID);
             context.Jobs.Remove(job);
+            context.SaveChanges();
         }
 
-        public void UpdateJob(Job job)
+        public void UpdateJob( Job job)
         {
-            context.Entry(job).State = EntityState.Modified;
-            Save();
+
+               
+                context.Entry(job).State = EntityState.Modified;
+                context.SaveChanges();
+
+           
         }
 
         
@@ -81,10 +88,11 @@ namespace HRDepartment.DAL
         {
             return context.Jobs.ToList();
         }
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+
+        //public void Save()
+        //{
+        //    context.SaveChanges();
+        //}
 
     }
 }

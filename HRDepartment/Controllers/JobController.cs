@@ -1,80 +1,75 @@
 ﻿using HRDepartment.DAL;
 using HRDepartment.Data;
+using HRDepartment.Helpers;
 using HRDepartment.Models;
+using HRDepartment.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HRDepartment.Controllers
 {
     public class JobController : Controller
     {
-        private IJobRepository _jobRepository;
+        private readonly  IJobRepository _jobRepository;
+
+        private readonly IJobControllerHelper _jobControllerHelper;
 
 
-        public JobController()
+        public JobController(IJobControllerHelper jobControllerHelper)
         {
             this._jobRepository = new JobRepository(new ApplicationDbContext());
+            _jobControllerHelper = jobControllerHelper;
         }
 
         [HttpGet]
 
         public ActionResult Index()
-
         {
-            var model = _jobRepository.GetAllJobs().FirstOrDefault(); ;
-            return View(model);
+            List<JobViewModel> jobViewModels = new List<JobViewModel>();
+            var models = _jobRepository.GetAllJobs();
+
+            foreach(var model in models)
+            {
+                jobViewModels.Add(_jobControllerHelper.BuildViewModel(model));
+            }
+
+            return View(jobViewModels);
 
         }
 
-        [HttpGet]
-        public ActionResult AddJob()
-        {
-            return View();
-        }
+
         [HttpPost]
-        public ActionResult AddJob(Job model)
+        public JsonResult AddJob(JobViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _jobRepository.InsertJob(model);
-                return RedirectToAction("Index", "Employee"); // MODIFICAM
+                _jobRepository.InsertJob(_jobControllerHelper.BuildQuery(model));
             }
-            return View();
-        }
-        [HttpGet]
-        public ActionResult EditJob(int jobId)
-        {
-            Job model = _jobRepository.GetJobByID(jobId);
-            return View(model);
+
+            return new JsonResult(model);
         }
 
         [HttpPost]
-        public ActionResult EditJob(Job model)
+        public ActionResult EditJob(JobViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _jobRepository.UpdateJob(model);
-                return RedirectToAction("Index", "Employee");// MODIFICAM
+                _jobRepository.UpdateJob(_jobControllerHelper.BuildQuery(model));
+                
+              
             }
-            else
-            {
-                return View(model);
-            }
+            return new JsonResult(model);
         }
-        [HttpGet]
-        public ActionResult DeleteJob(int jobId)
-        {
-            Job model = _jobRepository.GetJobByID(jobId);
-            return View(model);
-        }
-        [HttpPost]
+ 
+        [HttpDelete]
         public ActionResult Delete(int jobID)
         {
             _jobRepository.DeleteJob(jobID);
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("Index", "Job");
         }
 
         public ActionResult ListJobs()

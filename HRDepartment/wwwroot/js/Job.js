@@ -1,41 +1,49 @@
 var Job = (function () {
-    function _executeAjax(method, route, toDo, bodyData) {
+    function _buildPageAjax(method, route, bodyData) {
         return $.ajax({
             type: method,
             url: route,
             data: bodyData,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                if (toDo != null && toDo != undefined) {
-                    toDo(result);
-                }
-            }
         }
         );
     };
 
+    var DropDownItems = [
+      "true",
+       "false" 
+    ];
 
-
-    async function _updateDataSource(result) {
-        $("#jobContainer").dxDataGrid("option", "dataSource", result);
-    }
-
-
+    //upload data from db
     function _loadData() {
         $("#jobContainer").dxDataGrid({
             dataSource: jobs,
-            keyExpr: "jobId",
+            keyExpr: "JobId",
+            width:1100,
             showRowLines: true,
             showBorders: true,
+            headerFilter: {
+                visible: true
+            },
+            filterPanel: {
+                visible: true,
+                width:100
+            },
+            filterRow: {
+                visible: true
+            },
+            loadPanel: {
+                enabled: true
+            },
+            focusedRowEnabled: true,
             rowAlternationEnabled: true,
             filterRow: { visible: true },
             paging: {
-                pageSize: 5
+                pageSize: 10
             },
+
             pager: {
                 visible: true,
-                allowedPageSizes: [5, 10, 'all'],
+                allowedPageSizes: [10, 20, 'all'],
                 showPageSizeSelector: true,
                 showInfo: true,
                 showNavigationButtons: true
@@ -46,137 +54,153 @@ var Job = (function () {
                 allowDeleting: true,
                 allowAdding: true,
                 useIcons: true,
+
                 popup: {
-                    title: "Job Info",
+                    title: "Job details",
                     showTitle: true,
-                    width: 700,
-                    height: 500
+                    shading: true,
+                    shadingColor: "rgb(200,227,236)",
+                    resizeEnabled: true,
+                    position: "center",
+                    width: 500,
+                    height: 350
                 },
-                //form: {
-                //    items: [{
-                //        itemType: "group",
-                //        colCount: 2,
-                //        colSpan: 2,
-                //        items: [
-                //            {
-                //                dataField: "orderId",
-                //                editorOptions:
-                //                {
-                //                    disabled: true
-                //                },
-                //                visible: false
-                //            },
+
+                //fields on pop up
+                form: {
+
+                    colCount: 1,
+                    items: [
+                        {
+                            dataField: "JobId",
+                            editorOptions:
+                            {
+                                disabled: true
+                            },
+                            visible: true
+                            
+                        },
+
+                        {
+                            dataField: "JobName",
+                            isRequired: true,
+                            colSpan: 2,
+                            highlightChanges: true,
+                            editorType: "dxTextArea",
+                            editorOptions: {
+                                height: 50
+                            },
+                            validationRules: [
+                                {
+                                    type: "required",
+                                    message: "The field is required!"
+                                },
+                                {
+                                    type: "pattern",
+                                    pattern: "^[^0-9]+$",
+                                    message: "Do not use digits in the Job name!"
+                                },
+                            ]
+                        },
 
 
+                        {
+                            dataField: "IsAvailable",
+                            editorType: "dxSelectBox",
+                            caption: "Availability",
+                            type:"bool",
+                            width: 300,
+                            editorOptions: {
+                                items: DropDownItems,
+                                searchEnabled: true,
+                                value: ""
+                            },
+                            validationRules: [{
+                                type: "required",
+                                message: "The field is required!"
+                            }]
+                        }
 
-                //            "submitOrderDate",
-                //            "totalAmount",
-                //            "estimativeDeliveryDate"]
-                //    }]
-                //}
+
+                    ]
+                }
             },
+
             columns: [
                 {
-                    dataField: "jobId",
-                    alignment: "left",
+                    dataField: "JobId",
+                    caption: "Id",
+                    alignment: "center",
+                    width: 200,
                     allowFiltering: false,
-                    visible: false
+                    cellTemplate: function (element, info) {
+                        element.append("<div>" + info.text + "</div>");
+                        element.append("<div>").css("font-size", "16px");
+                    }
                 },
                 {
-                    dataField: "jobName",
-                    alignment: "left",
-                    allowFiltering: false
+                    dataField: "JobName",
+                    caption: "Name",
+                    placeholder: "Insert the job name",
+                    alignment: "center",
+                    width: 400,
+                    allowFiltering: true,
+                    cellTemplate: function (element, info) {
+                        element.append("<div>" + info.text + "</div>");
+                        element.append("<div>").css("font-size", "16px");
+                    }
                 },
 
                 {
-                    dataField: "isAvailable",
+                    dataField: "IsAvailable",
+                    caption: "Availability",
+                    placeholder: "Choose the availability",
+                    alignment: "center",
+                    width: 350,
                     dataType: "bool",
-                    allowFiltering: true
+                    allowFiltering: true,
+                    cellTemplate: function (element, info) {
+                        element.append("<div>" + info.text + "</div>");
+                        element.append("<div>").css("font-size", "16px");
+                    }
                 },
+
+
                 {
                     type: "buttons",
                     buttons: ["edit", "delete", {
 
-
-
                         onClick: async function (e) {
-                            _executeAjax("GET", "/Job/Index", _updateDataSource);
+                            _buildPageAjax("GET", "/Job/Index", _updatePage);
                         }
                     }
                     ]
                 }
             ],
 
-            onEditorPreparing: function (e) {
-            },
-            onEditingStart: function (e) {
-
-
+            onRowInserting: function (e) {
+                _buildPageAjax("POST", "/Job/AddJob/", { JobName: e.data.JobName, IsAvailable: e.data.IsAvailable });
 
             },
-            onInitNewRow: function (e) {
+
+            onRowUpdated: function (e) {
+                _buildPageAjax("POST", "/Job/EditJob/", { JobId: e.data.JobId, JobName: e.data.JobName, IsAvailable: e.data.IsAvailable });
             },
-            onRowInserting: async function (e) {
-                await _executeAjax("POST", "/Job/AddJob/", updateAlerts, JSON.stringify(e.data));
-                _executeAjax("GET", "/Job/GetJobs", _updateDataSource);
-            },
-            onRowInserted: function (e) {
 
-
-
-            },
-            onRowUpdating: function (e) {
-
-
-
-            },
-            onRowUpdated: async function (e) {
-            },
-            onRowRemoving: function (e) {
-
-
-
-            },
             onRowRemoved: function (e) {
-                _executeAjax("DELETE", "/Job/DeleteJob/", updateAlerts, JSON.stringify(e.data.orderId));
+                _buildPageAjax("DELETE", "/Job/Delete/", { JobId: e.data.JobId });
             },
-            onSaving: function (e) {
 
 
-
-            },
-            onSaved: function (e) {
-
-
-
-            },
-            onEditCanceling: function (e) {
-
-
-
-            },
-            onEditCanceled: function (e) {
-
-
-
-            }
         });
     }
 
-
-
-
     _loadData();
-    _executeAjax("GET", "/Job/Index", _updateDataSource);
-
-
+ 
 
     return {
-        updateDataSource: _updateDataSource,
-        executeAjax: _executeAjax,
+        buildPage: _buildPageAjax,
         loadData: _loadData
     }
-
-
 
 })();
