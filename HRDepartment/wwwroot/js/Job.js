@@ -120,8 +120,6 @@ var Job = (function () {
                                 message: "The field is required!"
                             }]
                         }
-
-
                     ]
                 }
             },

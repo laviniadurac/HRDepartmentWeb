@@ -17,5 +17,6 @@ namespace HRDepartment.DAL
         void Save();
 
         List<EmployeeViewModel> GetEmployeeData();
+
     }
 }

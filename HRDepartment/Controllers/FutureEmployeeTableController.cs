@@ -1,6 +1,6 @@
 ﻿using HRDepartment.DAL;
 using HRDepartment.Data;
-using HRDepartment.HelperVio;
+using HRDepartment.Helpers;
 using HRDepartment.Models;
 using HRDepartment.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +22,7 @@ namespace HRDepartment.Controllers
             _futureEmployeeRepository = new FutureEmployeeRepository(new ApplicationDbContext());
             _jobRepository = new JobRepository(new ApplicationDbContext());
         }
+      
 
         [HttpGet]
         public ActionResult Index()

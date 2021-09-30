@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HRDepartment.Models;
 
-namespace HRDepartment.HelperVio
+namespace HRDepartment.Helpers
 {
     public class StatusEnumConvert
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HRDepartment.HelperVio;
+using HRDepartment.Helpers;
 
 namespace HRDepartment.DAL
 {
@@ -46,6 +46,7 @@ namespace HRDepartment.DAL
         public void UpdateFutureEmployee(FutureEmployee futureEmployee)
         {
             context.Entry(futureEmployee).State = EntityState.Modified;
+            Save();
         }
 
         public void Save()
@@ -67,20 +68,8 @@ namespace HRDepartment.DAL
                 EmployeeName = futureEmployee.Employee.EmployeeName,
                 Status = StatusEnumConvert.GetEnumerator(futureEmployee.Employee.Status),
                 Experience = futureEmployee.Employee.Experience
-            }).ToList();
-            //}).Join(
-            //context.Experiences,
-            //employeeViewModel => employeeViewModel.EmployeeId,
-            //experience => experience.ExperienceId,
-            //(employeeViewModel, experience) => new EmployeeViewModel
-            //{
-            //    Technology = employeeViewModel.Technology,
-            //    JobName = employeeViewModel.JobName,
-            //    EmployeeId = employeeViewModel.EmployeeId,
-            //    EmployeeName = employeeViewModel.EmployeeName,
-            //    Status = employeeViewModel.Status,
-            //    Experience=experience.YearsOfExperience
-            //}).ToList();
+            })
+                .ToList();
 
             return a;
         }

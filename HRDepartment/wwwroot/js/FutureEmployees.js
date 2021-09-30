@@ -10,7 +10,6 @@ var Job = (function () {
         );
     };
 
-
     function _loadData() {
         $("#futureEmployeeTableContainer").dxDataGrid({
             dataSource: futureEmployees,
@@ -36,62 +35,63 @@ var Job = (function () {
                 allowAdding: false,
                 useIcons: true,
             },
+            headerFilter: {
+                visible: true
+            },
+            filterPanel: {
+                visible: true,
+                width: 100
+            },
+            filterRow: {
+                visible: true
+            },
+            focusedRowEnabled: true,
+            filterRow: { visible: true },
+            groupPanel: {
+                visible: true
+            },
             columns: [
                 {
                     dataField: "EmployeeId",
+                    allowGrouping: true,
                     editorOptions:
                     {
-                        disabled:true
+                        disabled: true
                     },
                     alignment: "left",
-                    allowFiltering: false,
+                    allowFiltering: true,
                     visible: true
                 },
                 {
                     dataField: "EmployeeName",
                     alignment: "left",
-                    allowFiltering: false
+                    allowFiltering: true
                 },
                 {
                     dataField: "Status",
                     alignment: "left",
-                    allowFiltering: false
+                    allowFiltering: true
                 },
                 {
                     dataField: "JobName",
                     alignment: "left",
-                    allowFiltering: false
+                    allowFiltering: true
                 },
                 {
                     dataField: "Technology",
                     alignment: "left",
-                    allowFiltering: false
+                    allowFiltering: true
                 },
                 {
                     dataField: "Experience",
                     alignment: "left",
-                    allowFiltering: false
+                    allowFiltering: true
                 }
-                //{
-                //    type: "buttons",
-                //    buttons: ["edit", "delete", {
-
-
-
-                //        onClick: async function (e) {
-                //            _executeAjax("GET", "/Job/Index", _updateDataSource);
-                //        }
-                //    }
-                //    ]
-                //}
             ],
 
             onEditorPreparing: function (e) {
             },
             onEditingStart: function (e) {
-
-
-
             },
             onInitNewRow: function (e) {
             },
@@ -103,9 +103,6 @@ var Job = (function () {
             },
             onRowRemoving: function (e) {
             },
-            //onRowRemoved: function (e) {
-            //    _executeAjax("DELETE", "/Job/DeleteJob/", JSON.stringify(e.data.EmployeeId));
-            //},
             onSaving: function (e) {
             },
             onSaved: function (e) {
@@ -116,9 +113,6 @@ var Job = (function () {
             }
         });
     }
-
-
-
 
     _loadData();
 
