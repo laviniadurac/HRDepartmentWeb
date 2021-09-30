@@ -65,22 +65,8 @@ namespace HRDepartment.DAL
                 JobName = futureEmployee.Job.JobName,
                 EmployeeId = futureEmployee.Employee.EmployeeId,
                 EmployeeName = futureEmployee.Employee.EmployeeName,
-                Status = StatusEnumConvert.GetEnumerator(futureEmployee.Employee.Status),
-                Experience = futureEmployee.Employee.Experience
+                Status = StatusEnumConvert.GetEnumerator(futureEmployee.Employee.Status)
             }).ToList();
-            //}).Join(
-            //context.Experiences,
-            //employeeViewModel => employeeViewModel.EmployeeId,
-            //experience => experience.ExperienceId,
-            //(employeeViewModel, experience) => new EmployeeViewModel
-            //{
-            //    Technology = employeeViewModel.Technology,
-            //    JobName = employeeViewModel.JobName,
-            //    EmployeeId = employeeViewModel.EmployeeId,
-            //    EmployeeName = employeeViewModel.EmployeeName,
-            //    Status = employeeViewModel.Status,
-            //    Experience=experience.YearsOfExperience
-            //}).ToList();
 
             return a;
         }

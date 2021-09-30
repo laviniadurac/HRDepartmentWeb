@@ -66,11 +66,6 @@ var Job = (function () {
                     dataField: "Technology",
                     alignment: "left",
                     allowFiltering: false
-                },
-                {
-                    dataField: "Experience",
-                    alignment: "left",
-                    allowFiltering: false
                 }
                 //{
                 //    type: "buttons",

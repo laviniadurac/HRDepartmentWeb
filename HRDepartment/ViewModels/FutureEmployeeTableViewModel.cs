@@ -13,7 +13,6 @@ namespace HRDepartment.ViewModels
         public string JobName { get; set; }
         public string Status { get; set; }
         public string Technology { get; set; }
-        public string Experience { get; set; }
 
     }
 
