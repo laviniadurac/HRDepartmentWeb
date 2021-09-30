@@ -12,7 +12,7 @@ namespace HRDepartment.DAL
         List<SelectListItem> GetJobs();
         Job GetJobByID(int jobId);
         void InsertJob(Job job);
-        void DeleteJob(int jobID);
+        void Delete(int jobID);
         void UpdateJob(Job job);
 
         //void Save();

@@ -59,8 +59,6 @@ namespace HRDepartment.Controllers
             if (ModelState.IsValid)
             {
                 _jobRepository.UpdateJob(_jobControllerHelper.BuildQuery(model));
-                
-              
             }
             return new JsonResult(model);
         }
@@ -68,7 +66,7 @@ namespace HRDepartment.Controllers
         [HttpDelete]
         public ActionResult Delete(int jobID)
         {
-            _jobRepository.DeleteJob(jobID);
+            _jobRepository.Delete(jobID);
             return RedirectToAction("Index", "Job");
         }
 
@@ -78,8 +76,6 @@ namespace HRDepartment.Controllers
             ViewBag.Jobs = new SelectList(jobsList, "JobId", "JobName");
             return View(jobsList);
         }
-
     }
-
 }
 

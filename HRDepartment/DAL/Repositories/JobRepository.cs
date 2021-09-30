@@ -44,7 +44,7 @@ namespace HRDepartment.DAL
 
         }
 
-        public void DeleteJob(int jobID)
+        public void Delete(int jobID)
         {
             Job job = context.Jobs.Find(jobID);
             context.Jobs.Remove(job);

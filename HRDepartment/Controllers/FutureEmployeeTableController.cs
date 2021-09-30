@@ -17,7 +17,6 @@ namespace HRDepartment.Controllers
         IFutureEmployeeRepository _futureEmployeeRepository;
         IJobRepository _jobRepository;
 
-
         public FutureEmployeeTableController()
         {
             _futureEmployeeRepository = new FutureEmployeeRepository(new ApplicationDbContext());

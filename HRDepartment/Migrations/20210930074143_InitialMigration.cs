@@ -66,12 +66,13 @@ namespace HRDepartment.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     OtherDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CV = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CV = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Experience = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,19 +91,6 @@ namespace HRDepartment.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Jobs", x => x.JobId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Technologies",
-                columns: table => new
-                {
-                    TechnologiesId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TechnologyName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Technologies", x => x.TechnologiesId);
                 });
 
             migrationBuilder.CreateTable(
@@ -212,6 +200,26 @@ namespace HRDepartment.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Technologies",
+                columns: table => new
+                {
+                    TechnologiesId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TechnologyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FutureEmployeeEmployeeId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Technologies", x => x.TechnologiesId);
+                    table.ForeignKey(
+                        name: "FK_Technologies_FutureEmployees_FutureEmployeeEmployeeId",
+                        column: x => x.FutureEmployeeEmployeeId,
+                        principalTable: "FutureEmployees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MultipleJobsPerEmployee",
                 columns: table => new
                 {
@@ -250,12 +258,7 @@ namespace HRDepartment.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExperiencesAndTechnologies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ExperiencesAndTechnologies_Experiences_ExperienceId",
-                        column: x => x.ExperienceId,
-                        principalTable: "Experiences",
-                        principalColumn: "ExperienceId",
-                        onDelete: ReferentialAction.Cascade);
+                  
                     table.ForeignKey(
                         name: "FK_ExperiencesAndTechnologies_Jobs_JobId",
                         column: x => x.JobId,
@@ -297,6 +300,17 @@ namespace HRDepartment.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Experiences",
+                columns: new[] { "ExperienceId", "YearsOfExperience" },
+                values: new object[,]
+                {
+                    { 1, "0-2 years" },
+                    { 2, "2-5 years" },
+                    { 3, "5-8 years" },
+                    { 4, "8+ years" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Jobs",
                 columns: new[] { "JobId", "IsAvailable", "JobName" },
                 values: new object[,]
@@ -305,6 +319,48 @@ namespace HRDepartment.Migrations
                     { 2, true, "Tester" },
                     { 3, true, "Web Developer" },
                     { 4, true, "Data Scientist" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Technologies",
+                columns: new[] { "TechnologiesId", "FutureEmployeeEmployeeId", "TechnologyName" },
+                values: new object[,]
+                {
+                    { 9, null, "C++" },
+                    { 8, null, "Automation" },
+                    { 7, null, "SQL" },
+                    { 6, null, "Angular" },
+                    { 2, null, "Java" },
+                    { 4, null, "ASP.Net Core" },
+                    { 3, null, "JavaScript" },
+                    { 10, null, "Artificial Intelligence" },
+                    { 1, null, "C#" },
+                    { 5, null, "WPF" },
+                    { 11, null, "Statistics" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ExperiencesAndTechnologies",
+                columns: new[] { "Id", "ExperienceId", "JobId", "TechnologiesId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1 },
+                    { 15, 15, 4, 9 },
+                    { 3, 3, 1, 9 },
+                    { 7, 7, 2, 8 },
+                    { 14, 14, 3, 7 },
+                    { 9, 9, 2, 7 },
+                    { 13, 13, 3, 6 },
+                    { 16, 16, 4, 10 },
+                    { 4, 4, 1, 5 },
+                    { 5, 5, 1, 4 },
+                    { 11, 11, 3, 3 },
+                    { 8, 8, 2, 3 },
+                    { 2, 2, 1, 2 },
+                    { 10, 10, 3, 1 },
+                    { 6, 6, 2, 1 },
+                    { 12, 12, 3, 4 },
+                    { 17, 17, 4, 11 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -380,6 +436,11 @@ namespace HRDepartment.Migrations
                 name: "IX_MultipleJobsPerEmployee_JobId",
                 table: "MultipleJobsPerEmployee",
                 column: "JobId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Technologies_FutureEmployeeEmployeeId",
+                table: "Technologies",
+                column: "FutureEmployeeEmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -421,10 +482,10 @@ namespace HRDepartment.Migrations
                 name: "Technologies");
 
             migrationBuilder.DropTable(
-                name: "FutureEmployees");
+                name: "Jobs");
 
             migrationBuilder.DropTable(
-                name: "Jobs");
+                name: "FutureEmployees");
         }
     }
 }

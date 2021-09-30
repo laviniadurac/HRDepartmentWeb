@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRDepartment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210928114417_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210929131222_UpdateEmployee")]
+    partial class UpdateEmployee
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,28 @@ namespace HRDepartment.Migrations
                     b.HasKey("ExperienceId");
 
                     b.ToTable("Experiences");
+
+                    b.HasData(
+                        new
+                        {
+                            ExperienceId = 1,
+                            YearsOfExperience = "0-2 years"
+                        },
+                        new
+                        {
+                            ExperienceId = 2,
+                            YearsOfExperience = "2-5 years"
+                        },
+                        new
+                        {
+                            ExperienceId = 3,
+                            YearsOfExperience = "5-8 years"
+                        },
+                        new
+                        {
+                            ExperienceId = 4,
+                            YearsOfExperience = "8+ years"
+                        });
                 });
 
             modelBuilder.Entity("HRDepartment.Models.ExperienceAndTechnologies", b =>
@@ -61,6 +83,127 @@ namespace HRDepartment.Migrations
                     b.HasIndex("TechnologiesId");
 
                     b.ToTable("ExperiencesAndTechnologies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ExperienceId = 1,
+                            JobId = 1,
+                            TechnologiesId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ExperienceId = 2,
+                            JobId = 1,
+                            TechnologiesId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ExperienceId = 3,
+                            JobId = 1,
+                            TechnologiesId = 9
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ExperienceId = 4,
+                            JobId = 1,
+                            TechnologiesId = 5
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ExperienceId = 5,
+                            JobId = 1,
+                            TechnologiesId = 4
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ExperienceId = 6,
+                            JobId = 2,
+                            TechnologiesId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ExperienceId = 7,
+                            JobId = 2,
+                            TechnologiesId = 8
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ExperienceId = 8,
+                            JobId = 2,
+                            TechnologiesId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ExperienceId = 9,
+                            JobId = 2,
+                            TechnologiesId = 7
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ExperienceId = 10,
+                            JobId = 3,
+                            TechnologiesId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ExperienceId = 11,
+                            JobId = 3,
+                            TechnologiesId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ExperienceId = 12,
+                            JobId = 3,
+                            TechnologiesId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ExperienceId = 13,
+                            JobId = 3,
+                            TechnologiesId = 6
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ExperienceId = 14,
+                            JobId = 3,
+                            TechnologiesId = 7
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ExperienceId = 15,
+                            JobId = 4,
+                            TechnologiesId = 9
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ExperienceId = 16,
+                            JobId = 4,
+                            TechnologiesId = 10
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ExperienceId = 17,
+                            JobId = 4,
+                            TechnologiesId = 11
+                        });
                 });
 
             modelBuilder.Entity("HRDepartment.Models.FutureEmployee", b =>
@@ -85,12 +228,16 @@ namespace HRDepartment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Experience")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OtherDetails")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -195,12 +342,74 @@ namespace HRDepartment.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("FutureEmployeeEmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TechnologyName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TechnologiesId");
 
+                    b.HasIndex("FutureEmployeeEmployeeId");
+
                     b.ToTable("Technologies");
+
+                    b.HasData(
+                        new
+                        {
+                            TechnologiesId = 1,
+                            TechnologyName = "C#"
+                        },
+                        new
+                        {
+                            TechnologiesId = 2,
+                            TechnologyName = "Java"
+                        },
+                        new
+                        {
+                            TechnologiesId = 3,
+                            TechnologyName = "JavaScript"
+                        },
+                        new
+                        {
+                            TechnologiesId = 4,
+                            TechnologyName = "ASP.Net Core"
+                        },
+                        new
+                        {
+                            TechnologiesId = 5,
+                            TechnologyName = "WPF"
+                        },
+                        new
+                        {
+                            TechnologiesId = 6,
+                            TechnologyName = "Angular"
+                        },
+                        new
+                        {
+                            TechnologiesId = 7,
+                            TechnologyName = "SQL"
+                        },
+                        new
+                        {
+                            TechnologiesId = 8,
+                            TechnologyName = "Automation"
+                        },
+                        new
+                        {
+                            TechnologiesId = 9,
+                            TechnologyName = "C++"
+                        },
+                        new
+                        {
+                            TechnologiesId = 10,
+                            TechnologyName = "Artificial Intelligence"
+                        },
+                        new
+                        {
+                            TechnologiesId = 11,
+                            TechnologyName = "Statistics"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -452,7 +661,7 @@ namespace HRDepartment.Migrations
             modelBuilder.Entity("HRDepartment.Models.MultipleJobs", b =>
                 {
                     b.HasOne("HRDepartment.Models.FutureEmployee", "Employee")
-                        .WithMany("EmployeeMultipleJobs")
+                        .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -466,6 +675,13 @@ namespace HRDepartment.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("HRDepartment.Models.Technologies", b =>
+                {
+                    b.HasOne("HRDepartment.Models.FutureEmployee", null)
+                        .WithMany("Technologies")
+                        .HasForeignKey("FutureEmployeeEmployeeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -521,7 +737,7 @@ namespace HRDepartment.Migrations
 
             modelBuilder.Entity("HRDepartment.Models.FutureEmployee", b =>
                 {
-                    b.Navigation("EmployeeMultipleJobs");
+                    b.Navigation("Technologies");
                 });
 #pragma warning restore 612, 618
         }

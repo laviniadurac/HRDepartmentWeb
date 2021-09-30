@@ -47,6 +47,10 @@ namespace HRDepartment
 
             services.AddScoped<IFutureEmployeeRepository, FutureEmployeeRepository>();
 
+            services.AddScoped<ITechnologiesRepository, TechnologiesRepository>();
+
+            services.AddScoped<IExperienceRepository, ExperienceRepository>();
+
             services.AddHttpContextAccessor();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
